@@ -11,6 +11,7 @@ html {
 /* lib */
 :root{
   --site-width:1920px;
+  --bg-black:#080E20;
   --bg-img:url("https://cdn.jsdelivr.net/gh/solmopark/disney-plus-process/docs/img/first_back.png");
 }
 
@@ -33,34 +34,28 @@ html {
   background-size: cover;
   width:var(--site-width);
   height:1080px;
-  transform:none;
+  position:relative;
 }
 
-
-.first-box .wrapper {
-  transform-style: preserve-3d;
-  width:1655px;
-  height:992px;
-   position:relative;
+.first-box .js-tilt{
+  padding-top:40px;
 }
 
-
-.first-box .first-1__img{
- transform: translateZ(40px) scale(1);
-  -webkit-transform: translateZ(40px) scale(1);
-   z-index: 2;
+.first-box .first__img{
+  border-radius:58px;
+  display:block;
+  margin:0 auto;
 }
 
-
-/* text */
-.first_t{
+/*-- text --*/
+.first-box .first_t{
   animation: glitch 1s linear infinite;
   color:#fff;
   font-size:60px;
   font-weight:800;
   position:absolute;
   top:17%;
-  left:12%;
+  left:11%;
   z-index:5;
 }
 
@@ -76,14 +71,14 @@ html {
   }
 }
 
-.first_t:before,
-.first_t:after{
+.first-box .first_t:before,
+.first-box .first_t:after{
   content: attr(title);
   position: absolute;
   left: 0;
 }
 
-.first_t:before{
+.first-box .first_t:before{
   animation: glitchTop 1s linear infinite;
   clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
@@ -101,7 +96,7 @@ html {
   }
 }
 
-.first_t:after{
+.first-box .first_t:after{
   animation: glitchBotom 1.5s linear infinite;
   clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
   -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
@@ -120,14 +115,12 @@ html {
 }
 
 /*-------- overview --------*/
-.over-box .intro{
-    background:url('https://cdn.jsdelivr.net/gh/solmopark/disney-plus-process/docs/img/over_back.png'),linear-gradient(233deg, #e56420, #c22525, #3d9c31, #37bbde);
-    width:1920px;
-    height:485px;
-  opacity:0.7;
-    background-size:cover;
-    background-blend-mode: hard-light;
-    animation: over-view 3s linear infinite;
+.over-box .intro {
+  color: url(""), linear-gradient(233deg, #332387, #8976ff, #a6bfff, #37bbde);
+  opacity: 0.7;
+  background-size: cover;
+  background-blend-mode: hard-light;
+  animation: over-view 3s linear infinite;
 }
 
 @keyframes over-view {
@@ -144,6 +137,7 @@ html {
     filter: hue-rotate(360deg);
   }
 }
+
 
 /*-------- Strategy --------*/
 .color-box .overlay {
@@ -189,7 +183,7 @@ html {
 	left: 49.1%;
 	margin: 0;
 	position: absolute;
-	font-size: 14rem;
+	font-size: 21rem;
 	font-weight: 800;
 	white-space: nowrap;
 	color: #332387;
@@ -200,11 +194,11 @@ html {
 .style-box .style-wrapper .text-style-1 {
 	-webkit-transform: translate(-50%, -50%) skew(-10deg, 0);
 	transform: translate(-50%, -50%) skew(-10deg, 0); 
-	top: 49.5%;
-	left: 12.1%;
+	top: 47.5%;
+	left: 11.1%;
 	margin: 0;
 	position: absolute;
-	font-size: 3rem;
+	font-size: 4rem;
 	font-weight: 800;
 	white-space: nowrap;
 	color: #332387;
@@ -269,19 +263,22 @@ html {
 
 /*-------- main --------*/
 .main-page .main-color{
-    height:1179px;
-    background-image: linear-gradient(to right, #332387 0%, #8976FF 50% ,#332387 100%);
-    opacity:0.7;
-    
-  }
+  height:1179px;
+  background-image: linear-gradient(to right, #332387 0%, #8976FF 50% ,#332387 100%);
+  opacity:0.7;
   
-  
-  .main-page .vedio-box{
-    width:1920px;  
-    height:1179px;
-    object-fit: fill;
-  }
+}
 
+
+.main-page .vedio-box{
+  width:1920px;  
+  height:1179px;
+  object-fit: fill;
+}
+
+.main-page .main-gjimg{
+border-radius:0 0 30px 30px;
+}
 /*-------- sub --------*/
 .subpage-box .intro{
     color:url(''),linear-gradient(233deg, #332387, #8976FF, #A6BFFF, #37bbde);
