@@ -1,9 +1,19 @@
+console.clear();
+
+setTimeout(function () {
+    let $together = $('.all-box.con').masonry();
+
+    $('.loader-1').addClass('hide');
+    AOS.init();
+}, 4000);
+
+new WOW().init();
 /* 이미지 왜곡 */
 const tilt = $('.first-box .js-tilt').tilt({
     maxTilt: 5,
     perspective: 2000,
-  });
-  
+});
+
 /*--------- 버블효과 ---------*/
 canvas = document.getElementsByTagName("canvas")[0];
 canvas.width = document.body.clientWidth;
@@ -105,7 +115,3 @@ function createLetters() {
 
 createLetters();
 update();
-
-
-new  AOS.init();
-new WOW().init();
