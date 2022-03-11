@@ -209,10 +209,10 @@ html {
   -webkit-transform: translate(-50%, -50%) skew(-10deg, 0);
   transform: translate(-50%, -50%) skew(-10deg, 0);
   top: 32%;
-  left: 49.1%;
+  left: 48.1%;
   margin: 0;
   position: absolute;
-  font-size: 21rem;
+  font-size: 15rem;
   font-weight: 800;
   white-space: nowrap;
   color: #332387;
@@ -227,7 +227,7 @@ html {
   left: 11.1%;
   margin: 0;
   position: absolute;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 800;
   white-space: nowrap;
   color: #332387;
