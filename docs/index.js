@@ -1,117 +1,122 @@
 console.clear();
+setTimeout(function () {
+    $('.all-box.con').masonry();
+
+    AOS.init();
+    new WOW().init();
+
+    /* 이미지 틸트 */
+    const tilt = $('.first-box .js-tilt').tilt({
+        maxTilt: 5,
+        perspective: 2000,
+    });
+}, 4500);
 
 setTimeout(function () {
-    let $together = $('.all-box.con').masonry();
-
     $('.loader-1').addClass('hide');
-    AOS.init();
-}, 4000);
+}, 5000);
 
-new WOW().init();
-/* 이미지 왜곡 */
-const tilt = $('.first-box .js-tilt').tilt({
-    maxTilt: 5,
-    perspective: 2000,
-});
+function BubbleEffect1__init(canvasWidth, canvasHeight) {
+    const canvas = document.getElementsByClassName("bubble-effect-1__canvas")[0];
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
 
-/*--------- 버블효과 ---------*/
-canvas = document.getElementsByTagName("canvas")[0];
-canvas.width = document.body.clientWidth;
-canvas.height = document.body.clientHeight;
+    const ctx = canvas.getContext("2d");
 
-var ctx = canvas.getContext("2d");
+    /*Modify options here*/
 
-/*Modify options here*/
+    //possible characters that will appear
+    const characterList = ["o", ".", "。", "˙"];
 
-//possible characters that will appear
-var characterList = ["o", ".", "。", "˙"];
+    //stocks possible character attributes
+    const layers = {
+        n: 5, //number of layers
+        letters: [100, 40, 30, 20, 10], //letters per layer (starting from the deepest layer)
+        coef: [0.1, 0.2, 0.4, 0.6, 0.8], //how much the letters move from the mouse (starting from the deepest layer)
+        size: [16, 22, 36, 40, 46], //font size of the letters (starting from the deepest layer)
+        color: ["#fff", "#eee", "#ccc", "#bbb", "#aaa"], //color of the letters (starting from the deepest layer)
+        font: "Courier" //font family (of every layer)
+    };
 
-//stocks possible character attributes
-var layers = {
-    n: 5, //number of layers
-    letters: [100, 40, 30, 20, 10], //letters per layer (starting from the deepest layer)
-    coef: [0.1, 0.2, 0.4, 0.6, 0.8], //how much the letters move from the mouse (starting from the deepest layer)
-    size: [16, 22, 36, 40, 46], //font size of the letters (starting from the deepest layer)
-    color: ["#fff", "#eee", "#ccc", "#bbb", "#aaa"], //color of the letters (starting from the deepest layer)
-    font: "Courier" //font family (of every layer)
-};
+    /*End of options*/
 
-/*End of options*/
+    const characters = [];
+    let mouseX = document.body.clientWidth / 2;
+    let mouseY = document.body.clientHeight / 2;
 
-var characters = [];
-var mouseX = document.body.clientWidth / 2;
-var mouseY = document.body.clientHeight / 2;
+    const rnd = {
+        btwn: function (min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+        },
+        choose: function (list) {
+            return list[rnd.btwn(0, list.length)];
+        }
+    };
 
-var rnd = {
-    btwn: function (min, max) {
-        return Math.floor(Math.random() * (max - min) + min);
-    },
-    choose: function (list) {
-        return list[rnd.btwn(0, list.length)];
+    /*LETTER DRAWING*/
+
+    function drawLetter(char) {
+        ctx.font = char.size + "px " + char.font;
+        ctx.fillStyle = char.color;
+
+        const x = char.posX + (mouseX - canvas.width / 2) * char.coef;
+        const y = char.posY + (mouseY - canvas.height / 2) * char.coef;
+
+        ctx.fillText(char.char, x, y);
     }
-};
 
-/*LETTER DRAWING*/
+    /*ANIMATION*/
 
-function drawLetter(char) {
-    ctx.font = char.size + "px " + char.font;
-    ctx.fillStyle = char.color;
+    document.onmousemove = function (ev) {
+        mouseX = ev.pageX - canvas.offsetLeft;
+        mouseY = ev.pageY - canvas.offsetTop;
 
-    var x = char.posX + (mouseX - canvas.width / 2) * char.coef;
-    var y = char.posY + (mouseY - canvas.height / 2) * char.coef;
+        if (window.requestAnimationFrame) {
+            requestAnimationFrame(update);
+        } else {
+            update();
+        }
+    };
 
-    ctx.fillText(char.char, x, y);
-}
-
-/*ANIMATION*/
-
-document.onmousemove = function (ev) {
-    mouseX = ev.pageX - canvas.offsetLeft;
-    mouseY = ev.pageY - canvas.offsetTop;
-
-    if (window.requestAnimationFrame) {
-        requestAnimationFrame(update);
-    } else {
-        update();
+    function update() {
+        clear();
+        render();
     }
-};
 
-function update() {
-    clear();
-    render();
-}
-
-function clear() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-function render() {
-    for (var i = 0; i < characters.length; i++) {
-        drawLetter(characters[i]);
+    function clear() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
-}
 
-/*INITIALIZE*/
-function createLetters() {
-    for (var i = 0; i < layers.n; i++) {
-        for (var j = 0; j < layers.letters[i]; j++) {
-            var character = rnd.choose(characterList);
-            var x = rnd.btwn(0, canvas.width);
-            var y = rnd.btwn(0, canvas.height);
-
-            characters.push({
-                char: character,
-                font: layers.font,
-                size: layers.size[i],
-                color: layers.color[i],
-                layer: i,
-                coef: layers.coef[i],
-                posX: x,
-                posY: y
-            });
+    function render() {
+        for (var i = 0; i < characters.length; i++) {
+            drawLetter(characters[i]);
         }
     }
+
+    /*INITIALIZE*/
+    function createLetters() {
+        for (let i = 0; i < layers.n; i++) {
+            for (let j = 0; j < layers.letters[i]; j++) {
+                const character = rnd.choose(characterList);
+                const x = rnd.btwn(0, canvas.width);
+                const y = rnd.btwn(0, canvas.height);
+
+                characters.push({
+                    char: character,
+                    font: layers.font,
+                    size: layers.size[i],
+                    color: layers.color[i],
+                    layer: i,
+                    coef: layers.coef[i],
+                    posX: x,
+                    posY: y
+                });
+            }
+        }
+    }
+
+    createLetters();
+    update();
 }
 
-createLetters();
-update();
+BubbleEffect1__init(1920, 1080);

@@ -1,9 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-
-html>body {
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
 html {
   scroll-behavior: smooth;
   user-select: none;
@@ -133,6 +127,27 @@ html {
   }
 }
 
+/* 버블 이펙트 */
+.bubble-effect-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.bubble-effect-1__canvas {
+  display: block;
+  border: 10px soild red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /*-------- overview --------*/
 .over-box .intro {
   color: url(""), linear-gradient(233deg, #332387, #8976ff, #a6bfff, #37bbde);
@@ -194,25 +209,25 @@ html {
 }
 
 /*-------- style --------*/
-.style-box .style-wrapper {
+.style-wrapper {
   width: 100%;
   font-family: 'Alfa Slab One', sans-serif;
   margin: 0 auto;
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  background-color: red;
+
 
 }
 
-.style-box .style-wrapper .text-style {
+.style-wrapper .text-style {
   -webkit-transform: translate(-50%, -50%) skew(-10deg, 0);
   transform: translate(-50%, -50%) skew(-10deg, 0);
   top: 32%;
-  left: 48.1%;
+  left: 49.1%;
   margin: 0;
   position: absolute;
-  font-size: 15rem;
+  font-size: 25rem;
   font-weight: 800;
   white-space: nowrap;
   color: #332387;
@@ -220,14 +235,14 @@ html {
   z-index: 1;
 }
 
-.style-box .style-wrapper .text-style-1 {
+.style-wrapper .text-style-1 {
   -webkit-transform: translate(-50%, -50%) skew(-10deg, 0);
   transform: translate(-50%, -50%) skew(-10deg, 0);
-  top: 47.5%;
-  left: 11.1%;
+  top: 49.5%;
+  left: 12.1%;
   margin: 0;
   position: absolute;
-  font-size: 3rem;
+  font-size: 5rem;
   font-weight: 800;
   white-space: nowrap;
   color: #332387;
@@ -236,7 +251,7 @@ html {
 
 }
 
-.style-box .style-wrapper .text-style::after,
+.style-wrapper .text-style::after,
 .style-wrapper .text-style::before {
   -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
@@ -246,7 +261,7 @@ html {
   position: absolute;
 }
 
-.style-box .style-wrapper .text-style::after {
+.style-wrapper .text-style::after {
   left: -15px;
   top: -15px;
   z-index: 2;
@@ -254,19 +269,19 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-.style-box .style-wrapper .text-style::before {
+.style-wrapper .text-style::before {
   z-index: -1;
   left: 15px;
   top: 15px;
   color: #8976FF;
 }
 
-.style-box .style-wrapper .text-style:hover::after {
+.style-wrapper .text-style:hover::after {
   left: -20px;
   top: -20px;
 }
 
-.style-box .style-wrapper .text-style:hover::before {
+.style-wrapper .text-style:hover::before {
   left: 20px;
   top: 20px;
 }
@@ -316,42 +331,7 @@ html {
   border-radius: 0 0 30px 30px;
 }
 
-/*-------- sub --------*/
-.subpage-box .intro {
-  color: url(''), linear-gradient(233deg, #332387, #8976FF, #A6BFFF, #37bbde);
-  opacity: 0.7;
-  background-size: cover;
-  background-blend-mode: hard-light;
-  animation: subpage-1 3s linear infinite;
-}
-
 @keyframes subpage-1 {
-  from {
-    -webkit-filter: hue-rotate(0);
-    -moz-filter: hue-rotate(0);
-    -ms-filter: hue-rotate(0);
-    filter: hue-rotate(0);
-  }
-
-  to {
-    -webkit-filter: hue-rotate(360deg);
-    -moz-filter: hue-rotate(360deg);
-    -ms-filter: hue-rotate(360deg);
-    filter: hue-rotate(360deg);
-  }
-}
-
-/*-------- parti --------*/
-.parti-box .intro {
-  background: url(''), linear-gradient(233deg, #e56420, #c22525, #3d9c31, #37bbde);
-  width: 1920px;
-  opacity: 0.5;
-  background-size: cover;
-  background-blend-mode: hard-light;
-  animation: perti-box 3s linear infinite;
-}
-
-@keyframes perti-box {
   from {
     -webkit-filter: hue-rotate(0);
     -moz-filter: hue-rotate(0);
@@ -375,7 +355,7 @@ html {
 .Epilogue-box .intro {
   background: url(''), linear-gradient(233deg, #e56420, #c22525, #3d9c31, #37bbde);
   width: 1920px;
-  height: 1238px;
+  height: 400px;
   background-size: cover;
   background-blend-mode: hard-light;
   animation: hue-rotate 3s linear infinite;
@@ -406,7 +386,7 @@ html {
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 12px;
+  width: 9px;
 }
 
 *::-webkit-scrollbar-track {
@@ -415,8 +395,166 @@ html {
 
 *::-webkit-scrollbar-thumb {
   background: linear-gradient(#332387, #8976FF, #A6BFFF);
-  border-radius: 10px;
-  border: 2px outset #7452ff;
+  border-radius: 5px;
+}
+
+#fountainTextG {
+  width: 234px;
+  margin: auto;
+}
+
+.fountainTextG {
+  color: rgb(0, 0, 0);
+  font-family: Arial;
+  font-size: 24px;
+  text-decoration: none;
+  font-weight: normal;
+  font-style: normal;
+  float: left;
+  animation-name: bounce_fountainTextG;
+  -o-animation-name: bounce_fountainTextG;
+  -ms-animation-name: bounce_fountainTextG;
+  -webkit-animation-name: bounce_fountainTextG;
+  -moz-animation-name: bounce_fountainTextG;
+  animation-duration: 2.09s;
+  -o-animation-duration: 2.09s;
+  -ms-animation-duration: 2.09s;
+  -webkit-animation-duration: 2.09s;
+  -moz-animation-duration: 2.09s;
+  animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  -ms-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  animation-direction: normal;
+  -o-animation-direction: normal;
+  -ms-animation-direction: normal;
+  -webkit-animation-direction: normal;
+  -moz-animation-direction: normal;
+  transform: scale(.5);
+  -o-transform: scale(.5);
+  -ms-transform: scale(.5);
+  -webkit-transform: scale(.5);
+  -moz-transform: scale(.5);
+}
+
+#fountainTextG_1 {
+  animation-delay: 0.75s;
+  -o-animation-delay: 0.75s;
+  -ms-animation-delay: 0.75s;
+  -webkit-animation-delay: 0.75s;
+  -moz-animation-delay: 0.75s;
+}
+
+#fountainTextG_2 {
+  animation-delay: 0.9s;
+  -o-animation-delay: 0.9s;
+  -ms-animation-delay: 0.9s;
+  -webkit-animation-delay: 0.9s;
+  -moz-animation-delay: 0.9s;
+}
+
+#fountainTextG_3 {
+  animation-delay: 1.05s;
+  -o-animation-delay: 1.05s;
+  -ms-animation-delay: 1.05s;
+  -webkit-animation-delay: 1.05s;
+  -moz-animation-delay: 1.05s;
+}
+
+#fountainTextG_4 {
+  animation-delay: 1.2s;
+  -o-animation-delay: 1.2s;
+  -ms-animation-delay: 1.2s;
+  -webkit-animation-delay: 1.2s;
+  -moz-animation-delay: 1.2s;
+}
+
+#fountainTextG_5 {
+  animation-delay: 1.35s;
+  -o-animation-delay: 1.35s;
+  -ms-animation-delay: 1.35s;
+  -webkit-animation-delay: 1.35s;
+  -moz-animation-delay: 1.35s;
+}
+
+#fountainTextG_6 {
+  animation-delay: 1.5s;
+  -o-animation-delay: 1.5s;
+  -ms-animation-delay: 1.5s;
+  -webkit-animation-delay: 1.5s;
+  -moz-animation-delay: 1.5s;
+}
+
+#fountainTextG_7 {
+  animation-delay: 1.64s;
+  -o-animation-delay: 1.64s;
+  -ms-animation-delay: 1.64s;
+  -webkit-animation-delay: 1.64s;
+  -moz-animation-delay: 1.64s;
+}
+
+
+
+
+@keyframes bounce_fountainTextG {
+  0% {
+    transform: scale(1);
+    color: rgb(0, 0, 0);
+  }
+
+  100% {
+    transform: scale(.5);
+    color: rgb(255, 255, 255);
+  }
+}
+
+@-o-keyframes bounce_fountainTextG {
+  0% {
+    -o-transform: scale(1);
+    color: rgb(0, 0, 0);
+  }
+
+  100% {
+    -o-transform: scale(.5);
+    color: rgb(255, 255, 255);
+  }
+}
+
+@-ms-keyframes bounce_fountainTextG {
+  0% {
+    -ms-transform: scale(1);
+    color: rgb(0, 0, 0);
+  }
+
+  100% {
+    -ms-transform: scale(.5);
+    color: rgb(255, 255, 255);
+  }
+}
+
+@-webkit-keyframes bounce_fountainTextG {
+  0% {
+    -webkit-transform: scale(1);
+    color: rgb(0, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: scale(.5);
+    color: rgb(255, 255, 255);
+  }
+}
+
+@-moz-keyframes bounce_fountainTextG {
+  0% {
+    -moz-transform: scale(1);
+    color: rgb(0, 0, 0);
+  }
+
+  100% {
+    -moz-transform: scale(.5);
+    color: rgb(255, 255, 255);
+  }
 }
 
 /*--------로딩화면--------*/
